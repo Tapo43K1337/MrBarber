@@ -122,14 +122,36 @@ function BookingModal({ open, onClose, initial }) {
           </div>
         </div>
         {step !== 7 && (
-          <div className="steps">
-            {STEPS.slice(0,6).map(s => (
-              <div key={s.id} className={`step ${s.id===step?'active':''} ${s.id<step?'done':''}`}>
-                <span className="stnum">{s.id<step?'✓':s.id}</span>
-                {s.label}
-              </div>
-            ))}
-          </div>
+          <>
+            <div className="steps steps--desktop">
+              {STEPS.slice(0, 6).map((s) => (
+                <div key={s.id} className={`step ${s.id === step ? 'active' : ''} ${s.id < step ? 'done' : ''}`}>
+                  <span className="stnum">{s.id < step ? '✓' : s.id}</span>
+                  {s.label}
+                </div>
+              ))}
+            </div>
+            <nav
+              className="steps steps--mob"
+              aria-label={`Крок ${step} з 7: ${STEPS[step - 1].label}${step < 7 ? `, далі ${STEPS[step].label}` : ''}`}
+            >
+              <span className="steps-mob-current">
+                <span className="steps-mob-num steps-mob-num--on">{step}</span>
+                <span className="steps-mob-lbl">{STEPS[step - 1].label}</span>
+              </span>
+              {step < 7 && (
+                <>
+                  <span className="steps-mob-arrow" aria-hidden="true">
+                    →
+                  </span>
+                  <span className="steps-mob-next">
+                    <span className="steps-mob-num steps-mob-num--off">{step + 1}</span>
+                    <span className="steps-mob-lbl">{STEPS[step].label}</span>
+                  </span>
+                </>
+              )}
+            </nav>
+          </>
         )}
         <div className="modal-body">
           {step===1 && (

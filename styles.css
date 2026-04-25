@@ -492,12 +492,24 @@ body.nav-menu-open .fab{
 .step.done{color:var(--red);}
 .step .stnum{width:18px;height:18px;border:1px solid currentColor;display:inline-flex;align-items:center;justify-content:center;font-size:9px;}
 .step.active .stnum{background:var(--red);color:#fff;border-color:var(--red);}
+/* моб.: лише «поточний крок → наступний» */
+.steps--mob{display:none;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 14px;text-align:center;}
+.steps-mob-current,.steps-mob-next{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;}
+.steps-mob-current{color:var(--paper);}
+.steps-mob-next{color:var(--paper-dim);}
+.steps-mob-arrow{color:var(--red);font-size:14px;line-height:1;font-weight:600;padding:0 4px;flex-shrink:0;}
+.steps-mob-num{width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;border:1px solid;flex-shrink:0;}
+.steps-mob-num--on{background:var(--red);border-color:var(--red);color:#fff;}
+.steps-mob-num--off{border-color:var(--line-2);color:var(--paper-dim);}
+.steps-mob-lbl{max-width:38vw;}
 .modal-body{padding:36px 40px;overflow-y:auto;flex:1;}
 .modal-foot{padding:20px 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--ink);}
 @media (max-width:720px){
   .modal-head{padding:24px 20px 16px;}
   .modal-title{font-size:22px;}
   .steps{padding:0 20px;}
+  .steps--desktop{display:none!important;}
+  .steps--mob{display:flex!important;}
   .modal-body{padding:24px 20px;}
   .modal-foot{padding:16px 20px;}
 }
