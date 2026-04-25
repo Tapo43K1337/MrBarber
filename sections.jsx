@@ -500,11 +500,9 @@ function Services({ onBook }) {
           {SERVICES.map(s => (
             <div className="serv-row" key={s.id} onClick={() => onBook(null, s.id)}>
               <div className="serv-num">{s.num}</div>
-              <div className="serv-mid">
-                <div className="serv-name">{s.name}</div>
-                <div className="serv-desc">{s.desc}</div>
-                <div className="serv-price">{s.price.toLocaleString('uk-UA')} <em>₴</em></div>
-              </div>
+              <div className="serv-name">{s.name}</div>
+              <div className="serv-desc">{s.desc}</div>
+              <div className="serv-price">{s.price.toLocaleString('uk-UA')} <em>₴</em></div>
               <div className="serv-arrow">Записатися</div>
             </div>
           ))}

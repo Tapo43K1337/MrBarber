@@ -389,11 +389,12 @@ section{position:relative;}
 .services{background:var(--ink-2);position:relative;overflow:hidden;}
 .services::before{content:"";position:absolute;right:-100px;top:80px;width:400px;height:400px;background:radial-gradient(circle, rgba(225,6,0,0.15) 0%, transparent 70%);pointer-events:none;}
 .serv-list{display:flex;flex-direction:column;border-top:1px solid var(--line);}
-/* serv-mid: назва + гнучка смуга (час по центру смуги) + ціна — час не «прилипає» до назви */
+/* Однакові колонки на кожному рядку: фіксована ширина під час — рівний «стовпчик», як у цін */
 .serv-row{
-  display:flex;
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr) minmax(5.75rem,7rem) minmax(0,1fr) minmax(6.25rem,max-content);
+  column-gap:clamp(12px,2vw,22px);
   align-items:center;
-  gap:20px 24px;
   padding:28px 0;
   border-bottom:1px solid var(--line);
   min-width:0;
@@ -401,40 +402,34 @@ section{position:relative;}
   cursor:pointer;
 }
 .serv-row:hover{background:linear-gradient(to right,transparent,rgba(225,6,0,0.05),transparent);padding-left:16px;}
-.serv-num{flex:0 0 52px;font-family:var(--mono);font-size:11px;color:var(--paper-dim);letter-spacing:0.1em;}
-.serv-mid{
-  flex:1 1 auto;
-  min-width:0;
-  display:flex;
-  align-items:center;
-  gap:0 12px;
+.serv-num{
+  grid-column:1;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--paper-dim);
+  letter-spacing:0.1em;
 }
 .serv-name{
-  flex:0 1 auto;
-  max-width:42%;
+  grid-column:2;
   min-width:0;
   font-family:var(--display);
   font-size:28px;
   text-transform:uppercase;
   letter-spacing:0.02em;
   text-align:left;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  line-height:1.15;
 }
 .serv-desc{
-  flex:1 1 0;
-  min-width:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  grid-column:3;
+  justify-self:stretch;
+  text-align:center;
   font-size:14px;
   color:var(--paper-dim);
   line-height:1.5;
   white-space:nowrap;
 }
 .serv-price{
-  flex:0 1 auto;
-  max-width:42%;
+  grid-column:4;
   min-width:0;
   font-family:var(--display);
   font-size:28px;
@@ -444,8 +439,8 @@ section{position:relative;}
 }
 .serv-price em{color:var(--paper-dim);font-style:normal;font-size:14px;font-family:var(--mono);}
 .serv-arrow{
-  flex:0 0 auto;
-  min-width:7.5em;
+  grid-column:5;
+  justify-self:end;
   color:var(--red);
   font-family:var(--mono);
   font-size:12px;
@@ -455,12 +450,15 @@ section{position:relative;}
 }
 .serv-row:hover .serv-arrow{opacity:1;transform:translateX(4px);}
 @media (max-width:720px){
-  .serv-row{gap:8px 10px;padding:20px 0;}
+  .serv-row{
+    grid-template-columns:minmax(0,1fr) minmax(4.75rem,5.5rem) auto;
+    column-gap:10px;
+    padding:20px 0;
+  }
   .serv-num,.serv-arrow{display:none;}
-  .serv-mid{gap:0 8px;}
-  .serv-name{max-width:46%;font-size:17px;}
-  .serv-desc{font-size:11px;}
-  .serv-price{max-width:46%;font-size:18px;}
+  .serv-name{grid-column:1;font-size:17px;}
+  .serv-desc{grid-column:2;font-size:11px;}
+  .serv-price{grid-column:3;font-size:18px;}
 }
 
 /* masters */
