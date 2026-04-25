@@ -145,7 +145,7 @@ const NAV_LINKS = [
   { path: '/contacts', label: 'Контакти' },
 ];
 
-function Nav({ onNavigate }) {
+function Nav({ onBook, onNavigate }) {
   const [shrunk, setShrunk] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
@@ -211,6 +211,9 @@ function Nav({ onNavigate }) {
                 {x.label}
               </a>
             ))}
+            <button type="button" className="nav-mob-cta" onClick={() => { closeMenu(); onBook(); }}>
+              Онлайн-запис
+            </button>
           </div>
         </div>
       )}

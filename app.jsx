@@ -188,7 +188,7 @@ function App() {
         <span className="live" />
         Сьогодні вільно: 7 вікон — Воскресенська, 20 · 5 — просп. Яворницького, 20
       </div>
-      <NavComponent onNavigate={navigate} />
+      <NavComponent onBook={() => openBook()} onNavigate={navigate} />
       <Hero onBook={() => openBook()} />
       <About />
       <Locations onBook={(locId) => openBook(locId)} />
