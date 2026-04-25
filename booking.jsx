@@ -78,10 +78,9 @@ function BookingModal({ open, onClose, initial }) {
         service: initial?.service || null,
         date:null, time:null, name:'', phone:'',
       });
-      // jump to first unfilled
+      // перехід тільки якщо вже є філіал (з картки локації) або майстер (з блоку команди) — послуга з прайсу не пропускає крок 1
       if (initial?.loc && !initial?.master && !initial?.service) setStep(2);
       if (initial?.master) setStep(3);
-      if (initial?.service && !initial?.master) setStep(2);
     }
   }, [open]);
 
@@ -153,7 +152,7 @@ function BookingModal({ open, onClose, initial }) {
             </nav>
           </>
         )}
-        <div className="modal-body">
+        <div className={`modal-body${step === 3 ? ' modal-body--svcStep' : ''}`}>
           {step===1 && (
             <div className="choose-grid">
               {window.LOCATIONS.map(l => (
@@ -239,7 +238,7 @@ function BookingModal({ open, onClose, initial }) {
               <h3>Готово, {data.name}!</h3>
               <p>
                 Чекаємо вас <strong style={{color:'var(--paper)'}}>{data.date?.toLocaleDateString('uk-UA')}</strong> о <strong style={{color:'var(--paper)'}}>{data.time}</strong>.
-                Підтвердження надійде SMS на {data.phone}. Якщо плани зміняться — зателефонуйте, зрозуміємо.
+                Ми перетелефонуємо на {data.phone}, щоб підтвердити запис. Якщо плани зміняться — зателефонуйте, зрозуміємо.
               </p>
               <div className="confirm-meta">
                 {loc?.name} · {mst?.name} · {svc?.name}

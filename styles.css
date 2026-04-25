@@ -502,7 +502,7 @@ body.nav-menu-open .fab{
 .steps-mob-num--on{background:var(--red);border-color:var(--red);color:#fff;}
 .steps-mob-num--off{border-color:var(--line-2);color:var(--paper-dim);}
 .steps-mob-lbl{max-width:38vw;}
-.modal-body{padding:36px 40px;overflow-y:auto;flex:1;}
+.modal-body{padding:36px 40px;overflow-y:auto;flex:1;min-height:0;}
 .modal-foot{padding:20px 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--ink);}
 @media (max-width:720px){
   /* майже на весь екран: тіло модалки з scroll, не «зрізаний» контент */
@@ -524,6 +524,9 @@ body.nav-menu-open .fab{
   .steps--desktop{display:none!important;}
   .steps--mob{display:flex!important;}
   .modal-body{padding:24px 20px;min-height:0;flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  /* довгий список послуг: скрол усередині .svc-list, інакше min-content ламає flex і низ зрізається */
+  .modal-body--svcStep{display:flex;flex-direction:column;overflow:hidden;padding-bottom:16px;}
+  .modal-body--svcStep .svc-list{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:max(8px,env(safe-area-inset-bottom));}
   .modal-foot{padding:16px 20px;flex-shrink:0;}
 }
 
