@@ -39,6 +39,18 @@ section{position:relative;}
 .nav{position:fixed;top:0;left:0;right:0;z-index:60;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(10,10,10,0.6);border-bottom:1px solid var(--line);transition:all .3s;}
 .nav.nav--menu-open{z-index:200}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;min-height:56px;height:72px;box-sizing:border-box;padding:0 48px;max-width:1440px;margin:0 auto;}
+/* десктоп: логотип зліва, меню по центру всього бару (раніше space-between + прихований бургер тягнув меню вправо) */
+@media (min-width:901px){
+  .nav-inner{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    align-items:center;
+    justify-content:normal;
+  }
+  .nav-logo{justify-self:start;}
+  .nav-links{justify-self:center;}
+  .nav-burger{justify-self:end;}
+}
 .nav-logo{
   display:flex;
   align-items:center;
