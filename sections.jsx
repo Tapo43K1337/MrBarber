@@ -637,8 +637,47 @@ function Footer({ onNavigate }) {
 
 // ===== FAB =====
 function FAB({ onBook }) {
+  const fabRef = useRef(null);
+
+  useEffect(() => {
+    const fab = fabRef.current;
+    const footer = document.querySelector('footer.footer');
+    if (!fab || !footer) return undefined;
+
+    const gap = 16;
+    const minBottom = 24;
+    let raf = 0;
+
+    const tick = () => {
+      raf = 0;
+      const fh = footer.getBoundingClientRect();
+      const innerH = window.innerHeight || document.documentElement.clientHeight;
+      const B = Math.max(minBottom, innerH - fh.top + gap);
+      fab.style.bottom = `${B}px`;
+    };
+
+    const schedule = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(tick);
+    };
+
+    tick();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(schedule) : null;
+    if (ro) ro.observe(footer);
+
+    return () => {
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      if (raf) cancelAnimationFrame(raf);
+      if (ro) ro.disconnect();
+      fab.style.bottom = '';
+    };
+  }, []);
+
   return (
-    <div className="fab">
+    <div className="fab" ref={fabRef}>
       <div className="fab-soc">
         <a href={SOCIAL.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" title="Instagram" className="fab-soc-ico">
           <img src={BRAND_SVG('instagram', 'E4405F')} width="22" height="22" alt="" />
