@@ -124,9 +124,9 @@ const SERVICES = [
 ];
 
 const MASTERS = [
-  { id: 'ilya',   num: '01', name: 'Ілля',   img: 'assets/master-2.svg', spec: 'Барбер',     exp: '5+ років', cuts: '2000+' },
-  { id: 'sergey', num: '02', name: 'Сергій', img: 'assets/master-3.svg', spec: 'Барбер',     exp: '5+ років', cuts: '2000+' },
-  { id: 'dmytro', num: '03', name: 'Дмитро', img: 'assets/master-1.svg', spec: 'Барбер',     exp: '5+ років', cuts: '2000+' },
+  { id: 'ilya',   num: '01', name: 'Ілля',   img: 'assets/master-2.png', spec: 'Барбер',     exp: '5+ років', cuts: '2000+' },
+  { id: 'sergey', num: '02', name: 'Сергій', img: 'assets/master-3.png', spec: 'Барбер',     exp: '5+ років', cuts: '2000+' },
+  { id: 'dmytro', num: '03', name: 'Дмитро', img: 'assets/master-1.png', spec: 'Барбер',     exp: '5+ років', cuts: '2000+' },
 ];
 
 const REVIEWS = [
