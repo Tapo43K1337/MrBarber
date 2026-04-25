@@ -176,9 +176,7 @@ section{position:relative;}
   animation:fadeUp 1s .33s both;
 }
 .hero-sub{font-family:var(--mono);font-size:12px;letter-spacing:0.5em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:48px;animation:fadeUp 1s .45s both;}
-.hero-meta{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--paper-dim);animation:fadeUp 1s .58s both;}
-.hero-meta strong{color:var(--paper);font-weight:500;}
-/* мобайл: після «Haircut &amp; Shave» — одразу «— Стрижка…», потім 2×2 (як у DOM) */
+/* мобайл: після «Haircut &amp; Shave» — «— Стрижка…» */
 @media (max-width:900px){
   .hero-inner{
     display:flex;
@@ -197,18 +195,6 @@ section{position:relative;}
     font-size:11px;
     letter-spacing:0.3em;
   }
-  .hero-meta{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    width:100%;
-    max-width:100%;
-    box-sizing:border-box;
-    column-gap:16px;
-    row-gap:22px;
-    justify-items:stretch;
-    padding:0;
-  }
-  .hero-meta > div{text-align:center;min-width:0}
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
 
@@ -391,7 +377,7 @@ section{position:relative;}
 .services{background:var(--ink-2);position:relative;overflow:hidden;}
 .services::before{content:"";position:absolute;right:-100px;top:80px;width:400px;height:400px;background:radial-gradient(circle, rgba(225,6,0,0.15) 0%, transparent 70%);pointer-events:none;}
 .serv-list{display:flex;flex-direction:column;border-top:1px solid var(--line);}
-.serv-row{display:grid;grid-template-columns:60px 2fr 3fr 1fr 60px;gap:32px;padding:28px 0;border-bottom:1px solid var(--line);align-items:center;transition:background .3s,padding .3s;cursor:pointer;}
+.serv-row{display:grid;grid-template-columns:60px 2fr 3fr 1fr minmax(100px,max-content);gap:32px;padding:28px 0;border-bottom:1px solid var(--line);align-items:center;transition:background .3s,padding .3s;cursor:pointer;}
 .serv-row:hover{background:linear-gradient(to right,transparent,rgba(225,6,0,0.05),transparent);padding-left:16px;}
 .serv-num{font-family:var(--mono);font-size:11px;color:var(--paper-dim);letter-spacing:0.1em;}
 .serv-name{font-family:var(--display);font-size:28px;text-transform:uppercase;letter-spacing:0.02em;}

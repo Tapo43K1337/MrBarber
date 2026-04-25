@@ -145,7 +145,7 @@ const NAV_LINKS = [
   { path: '/contacts', label: 'Контакти' },
 ];
 
-function Nav({ onBook, onNavigate }) {
+function Nav({ onNavigate }) {
   const [shrunk, setShrunk] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
@@ -211,9 +211,6 @@ function Nav({ onBook, onNavigate }) {
                 {x.label}
               </a>
             ))}
-            <button type="button" className="nav-mob-cta" onClick={() => { closeMenu(); onBook(); }}>
-              Онлайн-запис
-            </button>
           </div>
         </div>
       )}
@@ -246,9 +243,6 @@ function Nav({ onBook, onNavigate }) {
             </a>
           ))}
         </div>
-        <button type="button" className="nav-cta" onClick={onBook}>
-          Онлайн-запис →
-        </button>
         <button
           type="button"
           className={`nav-burger${menuOpen ? ' nav-burger--open' : ''}`}
@@ -279,12 +273,6 @@ function Hero({ onBook }) {
         </h1>
         <p className="hero-wordmark" aria-label="Haircut and shave">Haircut &amp; Shave</p>
         <div className="hero-sub">— Стрижка та гоління · з 2017 —</div>
-        <div className="hero-meta">
-          <div><strong>02</strong> філіали</div>
-          <div><strong>03</strong> майстри</div>
-          <div><strong>9+</strong> років</div>
-          <div><strong>20K+</strong> стрижок</div>
-        </div>
       </div>
     </section>
   );
@@ -512,7 +500,7 @@ function Services({ onBook }) {
               <div className="serv-name">{s.name}</div>
               <div className="serv-desc">{s.desc}</div>
               <div className="serv-price">{s.price.toLocaleString('uk-UA')} <em>₴</em></div>
-              <div className="serv-arrow">→ Записатися</div>
+              <div className="serv-arrow">Записатися</div>
             </div>
           ))}
         </div>

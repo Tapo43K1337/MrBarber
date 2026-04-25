@@ -109,7 +109,7 @@ function BookingModal({ open, onClose, initial }) {
       <div className="modal">
         <button className="modal-close" onClick={onClose} aria-label="Закрити">✕</button>
         <div className="modal-head">
-          <div className="modal-eyebrow">// Онлайн-запис · Крок {step} з 7</div>
+          <div className="modal-eyebrow">// Онлайн-запис</div>
           <div className="modal-title">
             {step===1 && 'Оберіть філіал'}
             {step===2 && 'Оберіть майстра'}
