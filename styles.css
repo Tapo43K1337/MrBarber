@@ -490,9 +490,10 @@ section{position:relative;}
 .fab-soc a:hover{opacity:0.88;transform:translateY(-2px);}
 .fab-soc-ico img{display:block;}
 @media (max-width:520px){.fab-main{padding:14px 20px;font-size:10px;}.fab-soc{display:none;}}
-body.nav-menu-open .fab{
+body.nav-menu-open .fab,
+.fab.fab--hide-under-nav{
   opacity:0;visibility:hidden;pointer-events:none;
-  transition:opacity .2s ease,visibility .2s ease;
+  transition:opacity .2s ease,visibility .2s ease,bottom .2s ease;
 }
 
 /* status bar */
