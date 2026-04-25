@@ -1,21 +1,43 @@
 /* global React */
 const { useState, useEffect, useRef } = React;
 
-/** Правильний URL для assets на будь-якому маршруті (/record, /about, /Repo/record на GitHub Pages) */
+/** База статики: каталог, де лежить sections.jsx (напр. /MrBarber/ на GitHub Pages) */
+(function initStaticBase() {
+  if (typeof document === 'undefined' || typeof window === 'undefined') return;
+  try {
+    const el = document.querySelector('script[src*="sections.jsx"]');
+    const raw = el && (el.src || el.getAttribute('src'));
+    if (!raw) return;
+    const u = new URL(raw, window.location.href);
+    const path = u.pathname;
+    const i = path.lastIndexOf('/');
+    window.__STATIC_BASE__ = i <= 0 ? '/' : path.slice(0, i + 1);
+  } catch (e) {
+    window.__STATIC_BASE__ = '/';
+  }
+})();
+
+/** Шлях до assets: спочатку від каталогу sections.jsx (правильно для …github.io/Repo/…) */
 function assetPath(rel) {
   if (rel == null || rel === '') return rel;
   if (typeof rel !== 'string') return rel;
   if (/^https?:\/\//i.test(rel) || rel.startsWith('//') || rel.startsWith('data:')) return rel;
+  const clean = rel.replace(/^\//, '');
+  const sb = typeof window !== 'undefined' && window.__STATIC_BASE__;
+  if (sb && sb !== '/') {
+    return sb.endsWith('/') ? sb + clean : `${sb}/${clean}`;
+  }
   const p = (typeof window !== 'undefined' && window.location && window.location.pathname) || '/';
   const segs = p.split('/').filter(Boolean);
   const routeSeg = { record: 1, about: 1, locations: 1, services: 1, masters: 1, gallery: 1, reviews: 1, contacts: 1, top: 1 };
   if (segs.length) {
     const last = segs[segs.length - 1];
+    const key = (last || '').toLowerCase();
     if (/\.(html?|jsx)$/i.test(last)) segs.pop();
-    else if (routeSeg[last]) segs.pop();
+    else if (routeSeg[key]) segs.pop();
   }
   const base = segs.length ? `/${segs.join('/')}/` : '/';
-  return base + rel.replace(/^\//, '');
+  return base + clean;
 }
 if (typeof window !== 'undefined') window.assetPath = assetPath;
 
