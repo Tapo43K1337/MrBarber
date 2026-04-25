@@ -653,19 +653,21 @@ function FAB({ onBook }) {
 
     const tick = () => {
       raf = 0;
+      const docEl = document.documentElement;
+      const innerH = (window.visualViewport?.height ?? window.innerHeight) || docEl.clientHeight;
       const fh = footer.getBoundingClientRect();
-      const innerH = window.innerHeight || document.documentElement.clientHeight;
       const B = Math.max(minBottom, innerH - fh.top + gap);
       fab.style.bottom = `${B}px`;
+      void fab.offsetHeight;
 
       const navEl = document.querySelector('nav.nav');
-      if (navEl) {
-        const fabRect = fab.getBoundingClientRect();
-        const navBottom = navEl.getBoundingClientRect().bottom;
-        fab.classList.toggle('fab--hide-under-nav', fabRect.top < navBottom + gapTop);
-      } else {
-        fab.classList.remove('fab--hide-under-nav');
-      }
+      const fabRect = fab.getBoundingClientRect();
+      const navBottom = navEl ? navEl.getBoundingClientRect().bottom : 0;
+      const overlapsNav = Boolean(navEl && fabRect.top < navBottom + gapTop);
+      const spare = docEl.scrollHeight - innerH;
+      const roomToEnd = docEl.scrollHeight - window.scrollY - innerH;
+      const nearPageBottom = spare > 100 && roomToEnd <= 56;
+      fab.classList.toggle('fab--hide-under-nav', overlapsNav || nearPageBottom);
     };
 
     const schedule = () => {
@@ -676,12 +678,21 @@ function FAB({ onBook }) {
     tick();
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule);
+    const vv = window.visualViewport;
+    if (vv) {
+      vv.addEventListener('scroll', schedule);
+      vv.addEventListener('resize', schedule);
+    }
     const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(schedule) : null;
     if (ro) ro.observe(footer);
 
     return () => {
       window.removeEventListener('scroll', schedule);
       window.removeEventListener('resize', schedule);
+      if (vv) {
+        vv.removeEventListener('scroll', schedule);
+        vv.removeEventListener('resize', schedule);
+      }
       if (raf) cancelAnimationFrame(raf);
       if (ro) ro.disconnect();
       fab.classList.remove('fab--hide-under-nav');
