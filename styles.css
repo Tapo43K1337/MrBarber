@@ -505,13 +505,26 @@ body.nav-menu-open .fab{
 .modal-body{padding:36px 40px;overflow-y:auto;flex:1;}
 .modal-foot{padding:20px 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--ink);}
 @media (max-width:720px){
+  /* майже на весь екран: тіло модалки з scroll, не «зрізаний» контент */
+  .modal-back{
+    align-items:stretch;
+    padding:max(10px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));
+  }
+  .modal{
+    width:100%;
+    max-width:100%;
+    max-height:none;
+    height:calc(100vh - 28px);
+    height:calc(100dvh - max(24px,env(safe-area-inset-top)) - max(24px,env(safe-area-inset-bottom)));
+    min-height:0;
+  }
   .modal-head{padding:24px 20px 16px;}
   .modal-title{font-size:22px;}
   .steps{padding:0 20px;}
   .steps--desktop{display:none!important;}
   .steps--mob{display:flex!important;}
-  .modal-body{padding:24px 20px;}
-  .modal-foot{padding:16px 20px;}
+  .modal-body{padding:24px 20px;min-height:0;flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .modal-foot{padding:16px 20px;flex-shrink:0;}
 }
 
 /* booking content */
