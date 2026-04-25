@@ -389,10 +389,10 @@ section{position:relative;}
 .services{background:var(--ink-2);position:relative;overflow:hidden;}
 .services::before{content:"";position:absolute;right:-100px;top:80px;width:400px;height:400px;background:radial-gradient(circle, rgba(225,6,0,0.15) 0%, transparent 70%);pointer-events:none;}
 .serv-list{display:flex;flex-direction:column;border-top:1px solid var(--line);}
-/* Однакові колонки на кожному рядку: фіксована ширина під час — рівний «стовпчик», як у цін */
+/* Фіксована колонка часу = рівний стовпчик; 2fr : 1fr для бокових зон — час ближче до візуального центру «назва…ціна», не до короткої назви */
 .serv-row{
   display:grid;
-  grid-template-columns:52px minmax(0,1fr) minmax(5.75rem,7rem) minmax(0,1fr) minmax(6.25rem,max-content);
+  grid-template-columns:52px minmax(0,2.1fr) minmax(6rem,7rem) minmax(0,1fr) minmax(6.25rem,max-content);
   column-gap:clamp(12px,2vw,22px);
   align-items:center;
   padding:28px 0;
@@ -451,7 +451,7 @@ section{position:relative;}
 .serv-row:hover .serv-arrow{opacity:1;transform:translateX(4px);}
 @media (max-width:720px){
   .serv-row{
-    grid-template-columns:minmax(0,1fr) minmax(4.75rem,5.5rem) auto;
+    grid-template-columns:minmax(0,1.85fr) minmax(4.75rem,5.5rem) minmax(0,1fr);
     column-gap:10px;
     padding:20px 0;
   }
