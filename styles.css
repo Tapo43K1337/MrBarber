@@ -389,7 +389,7 @@ section{position:relative;}
 .services{background:var(--ink-2);position:relative;overflow:hidden;}
 .services::before{content:"";position:absolute;right:-100px;top:80px;width:400px;height:400px;background:radial-gradient(circle, rgba(225,6,0,0.15) 0%, transparent 70%);pointer-events:none;}
 .serv-list{display:flex;flex-direction:column;border-top:1px solid var(--line);}
-/* назва зліва (2fr), час по центру смуги між назвою та ціною (два 1fr), ціна + CTA справа */
+/* назва зліва (2fr), час у середній зоні, вирівняний зліва до назви (два 1fr), ціна + CTA справа */
 .serv-row{
   display:grid;
   grid-template-columns:60px minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) auto minmax(100px,max-content);
@@ -405,8 +405,8 @@ section{position:relative;}
 .serv-name{grid-column:2;min-width:0;font-family:var(--display);font-size:28px;text-transform:uppercase;letter-spacing:0.02em;}
 .serv-desc{
   grid-column:3 / 5;
-  justify-self:center;
-  text-align:center;
+  justify-self:start;
+  text-align:left;
   font-size:14px;
   color:var(--paper-dim);
   line-height:1.5;
