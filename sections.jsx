@@ -111,16 +111,16 @@ const LOCATIONS = [
 ];
 
 const SERVICES = [
-  { id: 'strizka',            num: '01', name: 'Стрижка',                            desc: '1 год',              price: 800,  time: 60 },
-  { id: 'strizka-mash',      num: '02', name: 'Стрижка машинкою',                    desc: '1 год',              price: 600,  time: 60 },
-  { id: 'dytacha',            num: '03', name: 'Дитяча стрижка (до 12 років)',     desc: '45 хв',              price: 600,  time: 45 },
-  { id: 'boroda',             num: '04', name: 'Стрижка бороди',                    desc: '45 хв',              price: 500,  time: 45 },
-  { id: 'strizka-boroda',     num: '05', name: 'Стрижка + стрижка бороди',         desc: '1 год 30 хв',        price: 1000, time: 90 },
-  { id: 'mash-boroda',        num: '06', name: 'Стрижка машинкою + стрижка бороди',  desc: '1 год 15 хв',        price: 800,  time: 75 },
-  { id: 'strizka-dytacha',    num: '07', name: 'Стрижка + дитяча стрижка',         desc: '1 год 30 хв',        price: 1100, time: 90 },
-  { id: 'strizka-2dytjachi',  num: '08', name: 'Стрижка + дві дитячі стрижки',      desc: '2 год',              price: 1500, time: 120 },
-  { id: 'holinnia',           num: '09', name: 'Гоління',                           desc: '45 хв',              price: 600,  time: 45 },
-  { id: 'strizka-holinnia',   num: '10', name: 'Стрижка + гоління',                 desc: '1 год 30 хв',        price: 1000, time: 90 },
+  { id: 'strizka',            num: '01', name: 'Стрижка',                            desc: '60 хв',   price: 800,  time: 60 },
+  { id: 'strizka-mash',      num: '02', name: 'Стрижка машинкою',                    desc: '60 хв',   price: 600,  time: 60 },
+  { id: 'dytacha',            num: '03', name: 'Дитяча стрижка (до 12 років)',     desc: '45 хв',   price: 600,  time: 45 },
+  { id: 'boroda',             num: '04', name: 'Стрижка бороди',                    desc: '45 хв',   price: 500,  time: 45 },
+  { id: 'strizka-boroda',     num: '05', name: 'Стрижка + стрижка бороди',         desc: '90 хв',   price: 1000, time: 90 },
+  { id: 'mash-boroda',        num: '06', name: 'Стрижка машинкою + стрижка бороди',  desc: '75 хв',   price: 800,  time: 75 },
+  { id: 'strizka-dytacha',    num: '07', name: 'Стрижка + дитяча стрижка',         desc: '90 хв',   price: 1100, time: 90 },
+  { id: 'strizka-2dytjachi',  num: '08', name: 'Стрижка + дві дитячі стрижки',      desc: '120 хв',  price: 1500, time: 120 },
+  { id: 'holinnia',           num: '09', name: 'Гоління',                           desc: '45 хв',   price: 600,  time: 45 },
+  { id: 'strizka-holinnia',   num: '10', name: 'Стрижка + гоління',                 desc: '90 хв',   price: 1000, time: 90 },
 ];
 
 const MASTERS = [
