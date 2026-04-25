@@ -389,7 +389,7 @@ section{position:relative;}
 .services{background:var(--ink-2);position:relative;overflow:hidden;}
 .services::before{content:"";position:absolute;right:-100px;top:80px;width:400px;height:400px;background:radial-gradient(circle, rgba(225,6,0,0.15) 0%, transparent 70%);pointer-events:none;}
 .serv-list{display:flex;flex-direction:column;border-top:1px solid var(--line);}
-/* десктоп: назва і ціна з однаковим flex-grow — час строго між ними, без зсуву вліво/вправо */
+/* serv-mid: назва + гнучка смуга (час по центру смуги) + ціна — час не «прилипає» до назви */
 .serv-row{
   display:flex;
   align-items:center;
@@ -402,25 +402,39 @@ section{position:relative;}
 }
 .serv-row:hover{background:linear-gradient(to right,transparent,rgba(225,6,0,0.05),transparent);padding-left:16px;}
 .serv-num{flex:0 0 52px;font-family:var(--mono);font-size:11px;color:var(--paper-dim);letter-spacing:0.1em;}
+.serv-mid{
+  flex:1 1 auto;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:0 12px;
+}
 .serv-name{
-  flex:1 1 0;
+  flex:0 1 auto;
+  max-width:42%;
   min-width:0;
   font-family:var(--display);
   font-size:28px;
   text-transform:uppercase;
   letter-spacing:0.02em;
   text-align:left;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 .serv-desc{
-  flex:0 0 auto;
+  flex:1 1 0;
+  min-width:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   font-size:14px;
   color:var(--paper-dim);
   line-height:1.5;
   white-space:nowrap;
-  text-align:center;
 }
 .serv-price{
-  flex:1 1 0;
+  flex:0 1 auto;
+  max-width:42%;
   min-width:0;
   font-family:var(--display);
   font-size:28px;
@@ -443,9 +457,10 @@ section{position:relative;}
 @media (max-width:720px){
   .serv-row{gap:8px 10px;padding:20px 0;}
   .serv-num,.serv-arrow{display:none;}
-  .serv-name{font-size:17px;}
+  .serv-mid{gap:0 8px;}
+  .serv-name{max-width:46%;font-size:17px;}
   .serv-desc{font-size:11px;}
-  .serv-price{font-size:18px;}
+  .serv-price{max-width:46%;font-size:18px;}
 }
 
 /* masters */
