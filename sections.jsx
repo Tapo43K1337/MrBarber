@@ -1,6 +1,24 @@
 /* global React */
 const { useState, useEffect, useRef } = React;
 
+/** Правильний URL для assets на будь-якому маршруті (/record, /about, /Repo/record на GitHub Pages) */
+function assetPath(rel) {
+  if (rel == null || rel === '') return rel;
+  if (typeof rel !== 'string') return rel;
+  if (/^https?:\/\//i.test(rel) || rel.startsWith('//') || rel.startsWith('data:')) return rel;
+  const p = (typeof window !== 'undefined' && window.location && window.location.pathname) || '/';
+  const segs = p.split('/').filter(Boolean);
+  const routeSeg = { record: 1, about: 1, locations: 1, services: 1, masters: 1, gallery: 1, reviews: 1, contacts: 1, top: 1 };
+  if (segs.length) {
+    const last = segs[segs.length - 1];
+    if (/\.(html?|jsx)$/i.test(last)) segs.pop();
+    else if (routeSeg[last]) segs.pop();
+  }
+  const base = segs.length ? `/${segs.join('/')}/` : '/';
+  return base + rel.replace(/^\//, '');
+}
+if (typeof window !== 'undefined') window.assetPath = assetPath;
+
 // ===== Logo (recreated from provided red striped mark) =====
 const LogoMark = ({ size = 90, color = '#E10600' }) => (
   <svg width={size} height={size * 348 / 456} viewBox="0 0 456 348" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +36,7 @@ const LogoImg = ({ size = 90, className = '', alt, role }) => {
   const isNavBar = /(^|\s)nav-logo-asset(\s|$)/.test(className);
   return (
     <img
-      src="assets/logo.png"
+      src={assetPath('assets/logo.png')}
       alt={alt !== undefined ? alt : 'MR. BARBER, барбершоп у Дніпрі'}
       className={className || undefined}
       role={role}
@@ -304,7 +322,7 @@ function LocationCard({ loc, onBook }) {
         {loc.photo ? (
           <img
             className="loc-photo-img"
-            src={loc.photo}
+            src={assetPath(loc.photo)}
             alt={`MR. BARBER, ${loc.address}`}
             loading="lazy"
             decoding="async"
@@ -413,7 +431,7 @@ function Gallery() {
               }}
             >
               <img
-                src={it.src}
+                src={assetPath(it.src)}
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -444,7 +462,7 @@ function Gallery() {
             className="gal-lb-figure"
             onClick={(e) => e.stopPropagation()}
           >
-            <img className="gal-lb-img" src={lightbox.src} alt={lightbox.tag} />
+            <img className="gal-lb-img" src={assetPath(lightbox.src)} alt={lightbox.tag} />
             <figcaption className="gal-lb-cap">{lightbox.tag}</figcaption>
           </figure>
         </div>
@@ -497,7 +515,7 @@ function Masters({ onBook }) {
           {MASTERS.map(m => (
             <div className="mast" key={m.id}>
               <div className="mast-photo">
-                <img src={m.img} alt={m.name} />
+                <img src={assetPath(m.img)} alt={m.name} />
                 <div className="mast-meta">
                   <div className="mast-num">— Майстер {m.num}</div>
                   <div className="mast-name">{m.name}</div>
@@ -569,13 +587,13 @@ function Footer({ onNavigate }) {
                 <img src={BRAND_SVG('instagram', 'E4405F')} width="22" height="22" alt="" />
               </a>
               <a href={SOCIAL.telegram} target="_blank" rel="noreferrer" aria-label="Telegram" title="Telegram" className="foot-soc-ico">
-                <img src="assets/telegram.svg" width="22" height="22" alt="" />
+                <img src={assetPath('assets/telegram.svg')} width="22" height="22" alt="" />
               </a>
               <a href={SOCIAL.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" title="WhatsApp" className="foot-soc-ico">
                 <img src={BRAND_SVG('whatsapp', '25D366')} width="22" height="22" alt="" />
               </a>
               <a href={SOCIAL.viber} aria-label="Viber" title="Viber" className="foot-soc-ico">
-                <img src="assets/viber.svg" width="22" height="22" alt="" />
+                <img src={assetPath('assets/viber.svg')} width="22" height="22" alt="" />
               </a>
             </div>
           </div>
@@ -613,13 +631,13 @@ function FAB({ onBook }) {
           <img src={BRAND_SVG('instagram', 'E4405F')} width="22" height="22" alt="" />
         </a>
         <a href={SOCIAL.telegram} target="_blank" rel="noreferrer" aria-label="Telegram" title="Telegram" className="fab-soc-ico">
-          <img src="assets/telegram.svg" width="22" height="22" alt="" />
-        </a>
-        <a href={SOCIAL.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" title="WhatsApp" className="fab-soc-ico">
-          <img src={BRAND_SVG('whatsapp', '25D366')} width="22" height="22" alt="" />
-        </a>
-        <a href={SOCIAL.viber} aria-label="Viber" title="Viber" className="fab-soc-ico">
-          <img src="assets/viber.svg" width="22" height="22" alt="" />
+                <img src={assetPath('assets/telegram.svg')} width="22" height="22" alt="" />
+              </a>
+              <a href={SOCIAL.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" title="WhatsApp" className="fab-soc-ico">
+                <img src={BRAND_SVG('whatsapp', '25D366')} width="22" height="22" alt="" />
+              </a>
+              <a href={SOCIAL.viber} aria-label="Viber" title="Viber" className="fab-soc-ico">
+                <img src={assetPath('assets/viber.svg')} width="22" height="22" alt="" />
         </a>
       </div>
       <button className="fab-main" onClick={onBook}>

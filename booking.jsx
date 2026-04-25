@@ -148,7 +148,12 @@ function BookingModal({ open, onClose, initial }) {
             <div className="master-cards">
               {window.MASTERS.map(m => (
                 <button key={m.id} className={`mcard ${data.master===m.id?'sel':''}`} onClick={() => sel('master', m.id)}>
-                  <div className="mcard-img"><img src={m.img} alt={m.name} /></div>
+                  <div className="mcard-img">
+                    <img
+                      src={typeof window !== 'undefined' && window.assetPath ? window.assetPath(m.img) : m.img}
+                      alt={m.name}
+                    />
+                  </div>
                   <div className="mcard-info">
                     <h4>{m.name}</h4>
                     <p>{m.spec}</p>
