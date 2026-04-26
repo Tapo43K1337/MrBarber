@@ -107,6 +107,8 @@ const LOCATIONS = [
     hours: '10:00 — 20:00 · пн — сб',
     map: 'https://www.google.com/maps/search/?api=1&query=48.45768400438368%2C35.06076690572978',
     coord: '48.4577° N, 35.0608° E',
+    /* фото: покладіть файл у MrBarber/assets/ і змініть ім’я/розширення за потреби */
+    photo: 'assets/filial-02.jpg',
   },
 ];
 
@@ -124,9 +126,9 @@ const SERVICES = [
 ];
 
 const MASTERS = [
-  { id: 'ilya',   num: '01', name: 'Ілля',   img: 'assets/master-2.png', spec: 'Барбер',     exp: '5+ років', cuts: '2000+' },
-  { id: 'sergey', num: '02', name: 'Сергій', img: 'assets/master-3.png', spec: 'Барбер',     exp: '5+ років', cuts: '2000+' },
-  { id: 'dmytro', num: '03', name: 'Дмитро', img: 'assets/master-1.png', spec: 'Барбер',     exp: '5+ років', cuts: '2000+' },
+  { id: 'ilya',   num: '01', name: 'Ілля',   img: 'assets/master-2.jpg', spec: 'Барбер',     exp: '5+ років', cuts: '2000' },
+  { id: 'sergey', num: '02', name: 'Сергій', img: 'assets/master-3.jpg', spec: 'Барбер',     exp: '5+ років', cuts: '5000' },
+  { id: 'dmytro', num: '03', name: 'Дмитро', img: 'assets/master-1.jpg', spec: 'Барбер',     exp: '5+ років', cuts: '3000' },
 ];
 
 const REVIEWS = [
@@ -538,7 +540,10 @@ function Masters({ onBook }) {
               <div className="mast-body">
                 <div className="mast-row"><span>Досвід</span><strong>{m.exp}</strong></div>
                 <div className="mast-row"><span>Стрижок</span><strong>{m.cuts}</strong></div>
-                <div className="mast-row"><span>Філіал</span><strong>2 адреси в Дніпрі</strong></div>
+                <div className="mast-row">
+                  <span>Філіал</span>
+                  <strong>{LOCATIONS[0].tag} · {LOCATIONS[0].name}</strong>
+                </div>
                 <button className="btn btn-ghost mast-cta" onClick={() => onBook(null, null, m.id)}>Записатися до майстра</button>
               </div>
             </div>

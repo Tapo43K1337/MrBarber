@@ -247,6 +247,9 @@ section{position:relative;}
 .section-head h2{font-family:var(--display);font-weight:600;font-size:clamp(40px,5.5vw,72px);text-transform:uppercase;line-height:0.95;letter-spacing:-0.01em;}
 .section-head h2 .red{color:var(--red);}
 .section-head .lead{max-width:380px;font-size:14px;color:var(--paper-dim);line-height:1.6;}
+@media (min-width:901px){
+  .services .section-head .lead{max-width:none;white-space:nowrap;}
+}
 
 /* locations */
 .locations{background:var(--ink-2);}
