@@ -126,10 +126,21 @@ const SERVICES = [
 ];
 
 const MASTERS = [
-  { id: 'ilya',   num: '01', name: 'Ілля',   img: 'assets/master-2.jpg', spec: 'Барбер',     exp: '5+ років', cuts: '2000' },
-  { id: 'sergey', num: '02', name: 'Сергій', img: 'assets/master-3.jpg', spec: 'Барбер',     exp: '5+ років', cuts: '5000' },
-  { id: 'dmytro', num: '03', name: 'Дмитро', img: 'assets/master-1.jpg', spec: 'Барбер',     exp: '5+ років', cuts: '3000' },
+  { id: 'ilya', num: '01', name: 'Ілля', img: 'assets/master-2.jpg', spec: 'Барбер', exp: '5+ років', cuts: '2000', locationIds: ['dnp-1', 'dnp-2'] },
+  { id: 'sergey', num: '02', name: 'Сергій', img: 'assets/master-3.jpg', spec: 'Барбер', exp: '5+ років', cuts: '5000' },
+  { id: 'dmytro', num: '03', name: 'Дмитро', img: 'assets/master-1.jpg', spec: 'Барбер', exp: '5+ років', cuts: '3000' },
 ];
+
+function masterBranchLine(m) {
+  const ids = Array.isArray(m.locationIds) && m.locationIds.length ? m.locationIds : [LOCATIONS[0].id];
+  return ids
+    .map((id) => {
+      const l = LOCATIONS.find((x) => x.id === id);
+      return l ? `${l.tag} · ${l.name}` : '';
+    })
+    .filter(Boolean)
+    .join(' / ');
+}
 
 const REVIEWS = [
   { name: 'Олександр К.', when: '2 тиж. тому', text: 'Ходжу давно — жодного разу не підвели. Стрижка саме така, як просив: уважно до деталей, без метушні.' },
@@ -540,9 +551,9 @@ function Masters({ onBook }) {
               <div className="mast-body">
                 <div className="mast-row"><span>Досвід</span><strong>{m.exp}</strong></div>
                 <div className="mast-row"><span>Стрижок</span><strong>{m.cuts}</strong></div>
-                <div className="mast-row">
+                <div className="mast-row mast-row--branch">
                   <span>Філіал</span>
-                  <strong>{LOCATIONS[0].tag} · {LOCATIONS[0].name}</strong>
+                  <strong>{masterBranchLine(m)}</strong>
                 </div>
                 <button className="btn btn-ghost mast-cta" onClick={() => onBook(null, null, m.id)}>Записатися до майстра</button>
               </div>
