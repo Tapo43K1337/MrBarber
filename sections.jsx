@@ -96,7 +96,7 @@ const LOCATIONS = [
     hours: '10:00 — 20:00 · пн — сб',
     map: 'https://maps.app.goo.gl/uReFsQZs1kunjtTb9',
     coord: '48.4655° N, 35.0396° E',
-    photo: 'assets/02-haircut.jpg',
+    photo: 'assets/filial1.jpg',
   },
   {
     id: 'dnp-2',
@@ -388,7 +388,7 @@ function Locations({ onBook }) {
 }
 
 // ===== GALLERY =====
-// 8 плиток, .gal-grid--eight. Кадр фасаду філіалу 01 — assets/02-haircut.jpg (поза /gallery), у блоці атмосфери не підключається.
+// 8 плиток, .gal-grid--eight. Фото філіалу 01 — assets/filial1.jpg (поза /gallery), у блоці атмосфери не підключається.
 // objectPosition: за потреби
 const GALLERY = [
   { id: 'a', src: 'assets/gallery/01-mural.jpg',  tag: 'Мурал · зал' },
