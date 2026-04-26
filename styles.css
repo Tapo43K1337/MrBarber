@@ -248,7 +248,10 @@ section{position:relative;}
 .section-head h2 .red{color:var(--red);}
 .section-head .lead{max-width:380px;font-size:14px;color:var(--paper-dim);line-height:1.6;}
 @media (min-width:901px){
-  .services .section-head .lead{max-width:none;white-space:nowrap;}
+  .services .section-head .lead,
+  .gallery .section-head .lead,
+  .masters .section-head .lead,
+  .reviews .section-head .lead{max-width:none;white-space:nowrap;}
 }
 
 /* locations */
