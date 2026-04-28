@@ -414,6 +414,7 @@ const GALLERY = [
 
 function Gallery() {
   const [lightbox, setLightbox] = useState(null);
+  const mobileRows = [GALLERY.slice(0, 2), GALLERY.slice(2, 4), GALLERY.slice(4, 6)];
 
   useEffect(() => {
     if (!lightbox) return undefined;
@@ -464,6 +465,36 @@ function Gallery() {
                 draggable={false}
                 style={it.objectPosition ? { objectPosition: it.objectPosition } : undefined}
               />
+            </div>
+          ))}
+        </div>
+        <div className="gal-mobile-carousel" aria-label="Мобільна карусель галереї">
+          {mobileRows.map((row, rowIdx) => (
+            <div
+              className="gal-m-row"
+              key={`mobile-row-${rowIdx}`}
+              data-dir={rowIdx % 2 === 1 ? 'left' : 'right'}
+            >
+              <div className="gal-m-track">
+                {[...row, ...row].map((it, idx) => (
+                  <button
+                    type="button"
+                    className="gal-m-item"
+                    key={`${it.id}-${rowIdx}-${idx}`}
+                    aria-label={`Розгорнути фото: ${it.tag}`}
+                    onClick={() => setLightbox({ src: it.src, tag: it.tag })}
+                  >
+                    <img
+                      src={assetPath(it.src)}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      draggable={false}
+                      style={it.objectPosition ? { objectPosition: it.objectPosition } : undefined}
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
           ))}
         </div>
