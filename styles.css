@@ -126,7 +126,7 @@ section{position:relative;}
     display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:5px;
     padding:8px;flex-shrink:0;cursor:pointer;-webkit-tap-highlight-color:transparent;
     position:relative;z-index:150;
-    flex:0 0 48px;width:48px;min-width:48px;box-sizing:border-box;
+    flex:0 0 40px;width:40px;min-width:40px;box-sizing:border-box;
   }
   .nav-burger span{
     display:block;

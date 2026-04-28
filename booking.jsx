@@ -86,7 +86,27 @@ function BookingModal({ open, onClose, initial }) {
 
   if (!open) return null;
 
-  const sel = (k, v) => setData(d => ({ ...d, [k]: v }));
+  const hasLoc = Array.isArray(window.LOCATIONS) && window.LOCATIONS.length > 0;
+  const defaultLocId = hasLoc ? window.LOCATIONS[0].id : null;
+  const masterLocIds = (m) => (
+    Array.isArray(m?.locationIds) && m.locationIds.length
+      ? m.locationIds
+      : (defaultLocId ? [defaultLocId] : [])
+  );
+  const availableMasters = window.MASTERS.filter((m) => {
+    if (!data.loc) return true;
+    return masterLocIds(m).includes(data.loc);
+  });
+
+  const sel = (k, v) => setData((d) => {
+    if (k !== 'loc') return { ...d, [k]: v };
+    const next = { ...d, loc: v };
+    if (next.master) {
+      const chosen = window.MASTERS.find((m) => m.id === next.master);
+      if (!chosen || !masterLocIds(chosen).includes(v)) next.master = null;
+    }
+    return next;
+  });
   const next = () => setStep(s => Math.min(7, s+1));
   const prev = () => setStep(s => Math.max(1, s-1));
 
@@ -175,7 +195,7 @@ function BookingModal({ open, onClose, initial }) {
           )}
           {step===2 && (
             <div className="master-cards">
-              {window.MASTERS.map(m => (
+              {availableMasters.map(m => (
                 <button key={m.id} className={`mcard ${data.master===m.id?'sel':''}`} onClick={() => sel('master', m.id)}>
                   <div className="mcard-img">
                     <img
