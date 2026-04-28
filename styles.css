@@ -517,14 +517,14 @@ section{position:relative;}
 .mast-num{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:0.2em;}
 .mast-name{font-family:var(--display);font-size:32px;text-transform:uppercase;margin-top:6px;letter-spacing:0.02em;}
 .mast-spec{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--paper-dim);margin-top:8px;}
-.mast-body{padding:24px;border-top:1px solid var(--line);display:flex;flex-direction:column;height:100%;}
+.mast-body{padding:24px;border-top:1px solid var(--line);}
 .mast-row{display:flex;justify-content:space-between;font-size:12px;color:var(--paper-dim);font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid var(--line);}
 .mast-row:last-child{border:0;}
 .mast-row strong{color:var(--paper);font-weight:500;}
-.mast-row--branch{gap:16px;align-items:flex-start;}
+.mast-row--branch{gap:16px;align-items:flex-start;min-height:54px;}
 .mast-row--branch > span{flex-shrink:0;}
 .mast-row--branch strong{flex:1;min-width:0;text-align:right;line-height:1.35;}
-.mast-cta{margin-top:auto;width:100%;}
+.mast-cta{margin-top:18px;width:100%;}
 
 /* reviews */
 .reviews{background:var(--ink-2);}
